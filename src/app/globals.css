@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #c9ff3d;
+  --accent-ink: #0a0a0a;
+  --ink: #14140f;
+  --ink-soft: #5c5c52;
+  --bg: #f7f4ec;
+  --bg-raised: #fffdf7;
+  --bg-dark: #14140f;
+  --line: #e4dfd0;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-dark: var(--bg-dark);
+  --color-line: var(--line);
+  --font-display: var(--font-inter-tight);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --font-serif: var(--font-pt-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+
+.prose-post {
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--ink);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.prose-post h2 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-post h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-post p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-post a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+.prose-post ul,
+.prose-post ol {
+  margin: 0 0 1.25rem 1.25rem;
+}
+
+.prose-post li {
+  margin-bottom: 0.4rem;
+}
+
+.prose-post code {
+  font-family: var(--font-mono), monospace;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.9em;
+}
+
+.prose-post pre {
+  font-family: var(--font-mono), monospace;
+  background: var(--bg-dark);
+  color: #f2f0e6;
+  padding: 1.25rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.prose-post pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.prose-post blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 1.5rem 0;
+}
