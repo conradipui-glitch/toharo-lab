@@ -1,0 +1,8 @@
+#!/bin/sh
+# Проверка перед каждым коммитом. Ставится автоматически при npm install
+# (скрипт prepare выставляет core.hooksPath на .githooks).
+#
+# Обойти в исключительном случае: git commit --no-verify
+
+node scripts/check-secrets.mjs || exit 1
+node scripts/check-posts.mjs || exit 1

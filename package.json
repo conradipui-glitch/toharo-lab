@@ -6,9 +6,12 @@
     "dev": "next dev",
     "prebuild": "node scripts/check-posts.mjs",
     "build": "next build",
-    "check": "node scripts/check-posts.mjs",
+    "check": "node scripts/check-posts.mjs && node scripts/check-secrets.mjs --all",
+    "check:posts": "node scripts/check-posts.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs --all",
     "new-post": "node scripts/new-post.mjs",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

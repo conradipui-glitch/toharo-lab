@@ -40,6 +40,19 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# env
-.env.local
-.env*.local
+# env и любые секреты — репозиторий публичный
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+id_rsa
+id_ed25519
+.npmrc
+secrets.json
+credentials.json
+
+# локальные отчёты статистики
+/stats/
