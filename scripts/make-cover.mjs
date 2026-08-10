@@ -8,7 +8,15 @@
  *
  * Провайдеры:
  *   pollinations (по умолчанию) — без ключа, выдаёт точные размеры
- *   openai                      — нужен OPENAI_API_KEY в окружении, НЕ в репозитории
+ *   openai                      — нужен ключ в окружении, НЕ в репозитории
+ *
+ * Переменные окружения для провайдера openai (кладутся в .env.local или
+ * экспортируются в сессии — файл .env.local в .gitignore):
+ *   OPENAI_API_KEY      ключ (обязательно)
+ *   OPENAI_BASE_URL     базовый URL, если ключ от агрегатора или прокси,
+ *                       а не напрямую от OpenAI. По умолчанию https://api.openai.com/v1
+ *   OPENAI_IMAGE_MODEL  модель, по умолчанию gpt-image-1.
+ *                       Переопределяется флагом --model
  *
  * Размер берётся из формата, а не задаётся руками: картинка должна родиться
  * в тех пропорциях, в которых ляжет в блок.
@@ -17,6 +25,25 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import matter from "gray-matter";
+
+/**
+ * Подхватывает .env.local, если он есть. Файл в .gitignore и в репозиторий
+ * не попадает — это единственное место для ключей.
+ * Уже заданные переменные окружения не перетираем.
+ */
+function loadEnvLocal() {
+  const file = path.join(process.cwd(), ".env.local");
+  if (!fs.existsSync(file)) return;
+  for (const line of fs.readFileSync(file, "utf-8").split("\n")) {
+    const m = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/i);
+    if (!m) continue;
+    const key = m[1];
+    const value = m[2].trim().replace(/^["']|["']$/g, "");
+    if (!(key in process.env)) process.env[key] = value;
+  }
+}
+
+loadEnvLocal();
 
 const FORMATS = {
   cover: { width: 1600, height: 900 },
@@ -74,28 +101,51 @@ async function viaPollinations(prompt, { width, height }) {
   return Buffer.from(await res.arrayBuffer());
 }
 
-async function viaOpenAI(prompt, format) {
+async function viaOpenAI(prompt, format, modelOverride) {
   const key = process.env.OPENAI_API_KEY;
   if (!key)
     throw new Error(
       "нет OPENAI_API_KEY в окружении. Положите его в .env.local (файл не коммитится) " +
         "или экспортируйте в сессии. В репозиторий ключ класть нельзя."
     );
+
+  // Ключ может быть от агрегатора или прокси, а не напрямую от OpenAI
+  const baseUrl = (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/+$/, "");
+  const model = modelOverride || process.env.OPENAI_IMAGE_MODEL || "gpt-image-1";
   const size = OPENAI_SIZES[format];
-  console.log(`Генерирую через OpenAI gpt-image-1 (${size})…`);
-  const res = await fetch("https://api.openai.com/v1/images/generations", {
+
+  console.log(`Генерирую через ${model} на ${baseUrl} (${size})…`);
+
+  const res = await fetch(`${baseUrl}/images/generations`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${key}`,
     },
-    body: JSON.stringify({ model: "gpt-image-1", prompt, size, n: 1 }),
+    body: JSON.stringify({ model, prompt, size, n: 1 }),
   });
-  if (!res.ok) throw new Error(`OpenAI ответил ${res.status}: ${await res.text()}`);
+
+  if (!res.ok) {
+    const body = await res.text();
+    // В теле ошибки ключа не бывает, но URL и модель подсказывают, где искать
+    throw new Error(
+      `${baseUrl} ответил ${res.status}: ${body.slice(0, 400)}\n` +
+        `Модель: ${model}. Если ключ от агрегатора — задайте OPENAI_BASE_URL и OPENAI_IMAGE_MODEL.`
+    );
+  }
+
   const data = await res.json();
-  const b64 = data?.data?.[0]?.b64_json;
-  if (!b64) throw new Error("OpenAI не вернул изображение");
-  return Buffer.from(b64, "base64");
+  const item = data?.data?.[0];
+
+  // Одни провайдеры возвращают base64, другие — ссылку на файл
+  if (item?.b64_json) return Buffer.from(item.b64_json, "base64");
+  if (item?.url) {
+    const img = await fetch(item.url);
+    if (!img.ok) throw new Error(`не удалось скачать картинку по ссылке: ${img.status}`);
+    return Buffer.from(await img.arrayBuffer());
+  }
+
+  throw new Error("провайдер не вернул ни b64_json, ни url");
 }
 
 try {
@@ -103,7 +153,7 @@ try {
 
   const bytes =
     args.provider === "openai"
-      ? await viaOpenAI(args.prompt, args.format)
+      ? await viaOpenAI(args.prompt, args.format, args.model)
       : await viaPollinations(args.prompt, spec);
 
   if (bytes.length < 1000) throw new Error("ответ подозрительно маленький, картинки нет");
