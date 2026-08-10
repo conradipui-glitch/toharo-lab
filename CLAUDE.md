@@ -6,7 +6,8 @@
 
 - **этот файл** — что можно и чего нельзя менять, как публиковать, как проверять;
 - **[docs/editorial.md](docs/editorial.md)** — как писать текст, чтобы его цитировал AI-поиск;
-- **[docs/content-plan.md](docs/content-plan.md)** — о чём писать и в каком порядке.
+- **[docs/content-plan.md](docs/content-plan.md)** — о чём писать и в каком порядке;
+- **[docs/test-drive.md](docs/test-drive.md)** — как тестировать инструменты, чтобы из этого вышла статья и сценарий видео.
 
 ---
 
