@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-posts.mjs",
+    "prebuild": "node scripts/check-posts.mjs && node scripts/build-redirects.mjs",
     "build": "next build",
     "check": "node scripts/check-posts.mjs && node scripts/check-secrets.mjs --all",
     "check:posts": "node scripts/check-posts.mjs",
     "check:secrets": "node scripts/check-secrets.mjs --all",
     "new-post": "node scripts/new-post.mjs",
+    "cover": "node scripts/make-cover.mjs",
+    "post": "node scripts/post.mjs",
     "lint": "eslint",
     "prepare": "git config core.hooksPath .githooks || true"
   },

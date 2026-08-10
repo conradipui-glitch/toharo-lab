@@ -56,3 +56,6 @@ credentials.json
 
 # локальные отчёты статистики
 /stats/
+
+# редиректы /go/ генерируются при сборке из content/links.json
+/public/go/

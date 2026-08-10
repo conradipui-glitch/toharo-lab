@@ -27,9 +27,18 @@ export type PostFrontmatter = {
   excerpt: string;
   category: Category;
   readTime: string;
+  /** Путь вида /covers/<slug>.jpg. Пусто — покажется градиентная заглушка. */
   cover?: string;
+  /** Описание картинки: читают скринридеры и поисковые системы. */
+  coverAlt?: string;
   date: string;
   published: boolean;
+  /** Канонический URL, если материал был опубликован где-то ещё раньше. */
+  canonical?: string;
+  /** Теги — попадают в JSON-LD и помогают AI-поиску понять тему. */
+  tags?: string[];
+  /** Дата существенного обновления материала, ГГГГ-ММ-ДД. */
+  updated?: string;
 };
 
 export type Post = PostFrontmatter & {
