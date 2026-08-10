@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "О проекте — TOHARO LAB",
+  title: "О проекте",
   description: "Кто ведёт TOHARO LAB и зачем этот проект существует.",
 };
 

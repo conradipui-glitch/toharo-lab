@@ -20,7 +20,7 @@ export async function generateMetadata({
   const category = categoryFromSlug(slug);
   if (!category) return {};
   return {
-    title: `${CATEGORY_TITLES[category]} — TOHARO LAB`,
+    title: CATEGORY_TITLES[category],
     description: `${CATEGORY_TITLES[category]} о вайб-кодинге и AI-агентах.`,
   };
 }

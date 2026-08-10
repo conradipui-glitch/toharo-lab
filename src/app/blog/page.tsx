@@ -3,7 +3,7 @@ import { PostCard } from "@/components/post-card";
 import { CategoryFilter } from "@/components/category-filter";
 
 export const metadata = {
-  title: "Материалы — TOHARO LAB",
+  title: "Материалы",
   description: "Гайды, статьи и заметки о вайб-кодинге и AI-агентах.",
 };
 

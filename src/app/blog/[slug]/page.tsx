@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">) {
   const image = post.cover ? `${SITE.url}${post.cover}` : undefined;
 
   return {
-    title: `${post.title} — ${SITE.name}`,
+    // Без имени сайта: его добавит шаблон title в корневом layout
+    title: post.title,
     description: post.excerpt,
     alternates: { canonical: post.canonical ?? url },
     keywords: post.tags,
