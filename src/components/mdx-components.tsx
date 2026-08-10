@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import { asset } from "@/lib/site";
 
 /**
  * Компоненты, доступные внутри текста поста.
@@ -23,7 +24,7 @@ function Partner({
 }) {
   return (
     <a
-      href={`/go/${id}/`}
+      href={asset(`/go/${id}/`)}
       rel="sponsored noopener nofollow"
       target="_blank"
       data-partner={id}

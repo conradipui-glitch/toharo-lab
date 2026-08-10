@@ -1,4 +1,5 @@
 import { IMAGE_FORMATS, type ImageFormat } from "@/lib/images";
+import { asset } from "@/lib/site";
 
 /**
  * Обложка поста. Если картинки нет — рисует градиентную заглушку,
@@ -42,7 +43,7 @@ export function CoverImage({
   return (
     // eslint-disable-next-line @next/next/no-img-element -- статический экспорт, оптимизатор недоступен
     <img
-      src={src}
+      src={asset(src)}
       alt={alt ?? ""}
       width={spec.width}
       height={spec.height}
