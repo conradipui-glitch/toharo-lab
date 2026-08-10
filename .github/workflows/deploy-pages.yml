@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+# Запускается на каждый пуш в main: Ива коммитит пост — сайт обновляется сам.
+# Можно запустить и вручную из вкладки Actions.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Токен только на чтение кода и публикацию Pages, больше ничего.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Если пуши идут подряд, доводим до конца последний, промежуточные отменяем.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Установить зависимости
+        run: npm ci
+
+      - name: Проверить, что в коде нет секретов
+        run: node scripts/check-secrets.mjs --all
+
+      - name: Собрать сайт
+        # BASE_PATH нужен, потому что Pages отдаёт сайт по подпути /<repo>/.
+        # prebuild сам прогонит проверку постов и упадёт на кривом frontmatter,
+        # то есть сломанный материал до сайта не доедет.
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: npm run build
+
+      - name: Отключить обработку Jekyll
+        # Без этого файла Pages игнорирует папки, начинающиеся с подчёркивания,
+        # а там лежат все ассеты Next (_next/).
+        run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
