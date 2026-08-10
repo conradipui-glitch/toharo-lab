@@ -25,6 +25,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import matter from "gray-matter";
+import sharp from "sharp";
 
 /**
  * Подхватывает .env.local, если он есть. Файл в .gitignore и в репозиторий
@@ -51,12 +52,38 @@ const FORMATS = {
   wide: { width: 1680, height: 720 },
 };
 
-/** Ближайшие размеры, которые реально принимает gpt-image-1. */
+/**
+ * Размеры, которые принимают модели изображений OpenAI: список фиксированный,
+ * произвольные пропорции запросить нельзя. Берём ближайший по форме и
+ * обрезаем результат до целевого формата функцией fitToFormat.
+ */
 const OPENAI_SIZES = {
-  cover: "1536x1024",
+  cover: "1536x1024", // 3:2 → обрежется до 16:9
   square: "1024x1024",
-  wide: "1536x1024",
+  wide: "1536x1024", // 3:2 → обрежется до 21:9
 };
+
+/**
+ * Приводит картинку к точным размерам формата.
+ *
+ * Нужно потому, что провайдер отдаёт свои фиксированные пропорции, а правило
+ * проекта — изображение должно родиться в тех пропорциях, в которых ляжет
+ * в блок. Иначе браузер обрежет его по object-cover как попало и с картинки
+ * уедет смысловой центр.
+ *
+ * Кроп по центру: генеративные модели держат композицию в середине кадра.
+ */
+async function fitToFormat(bytes, { width, height }) {
+  const img = sharp(bytes);
+  const meta = await img.metadata();
+
+  if (meta.width === width && meta.height === height) return bytes;
+
+  return img
+    .resize(width, height, { fit: "cover", position: "centre" })
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toBuffer();
+}
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 const COVERS_DIR = path.join(process.cwd(), "public", "covers");
@@ -151,12 +178,20 @@ async function viaOpenAI(prompt, format, modelOverride) {
 try {
   fs.mkdirSync(COVERS_DIR, { recursive: true });
 
-  const bytes =
+  const raw =
     args.provider === "openai"
       ? await viaOpenAI(args.prompt, args.format, args.model)
       : await viaPollinations(args.prompt, spec);
 
-  if (bytes.length < 1000) throw new Error("ответ подозрительно маленький, картинки нет");
+  if (raw.length < 1000) throw new Error("ответ подозрительно маленький, картинки нет");
+
+  // Приводим к точным пропорциям формата, какой бы размер ни отдал провайдер
+  const bytes = await fitToFormat(raw, spec);
+  const meta = await sharp(bytes).metadata();
+  if (meta.width !== spec.width || meta.height !== spec.height)
+    throw new Error(
+      `не удалось привести к ${spec.width}×${spec.height}, получилось ${meta.width}×${meta.height}`
+    );
 
   fs.writeFileSync(outPath, bytes);
 
@@ -171,7 +206,7 @@ try {
   fs.writeFileSync(postPath, matter.stringify(file.content, file.data), "utf-8");
 
   const kb = Math.round(bytes.length / 1024);
-  console.log(`Готово: public/covers/${args.slug}.jpg (${kb} КБ)`);
+  console.log(`Готово: public/covers/${args.slug}.jpg (${spec.width}×${spec.height}, ${kb} КБ)`);
   console.log(`cover: ${file.data.cover}`);
   console.log(`coverAlt: ${file.data.coverAlt}`);
   if (!args.alt)

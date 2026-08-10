@@ -13,7 +13,9 @@
     "cover": "node scripts/make-cover.mjs",
     "post": "node scripts/post.mjs",
     "lint": "eslint",
-    "prepare": "git config core.hooksPath .githooks || true"
+    "prepare": "git config core.hooksPath .githooks || true",
+    "covers:fit": "node scripts/fit-covers.mjs",
+    "qr": "node scripts/make-qr.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -35,6 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
     "qrcode": "^1.5.4",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

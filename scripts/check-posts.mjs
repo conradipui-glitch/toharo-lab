@@ -16,6 +16,26 @@ const COVERS_DIR = path.join(process.cwd(), "public", "covers");
 /** Минимальная длина тела поста. Сайт — не телеграм, короткие заметки сюда не идут. */
 const MIN_BODY_CHARS = { Заметка: 1200, Статья: 3000, Гайд: 3000 };
 
+/** Обложка поста — формат cover, 16:9. Соответствует IMAGE_FORMATS в src/lib/images.ts. */
+const COVER_RATIO = 16 / 9;
+
+/** Размеры JPEG из маркера SOF — без зависимостей, читаем сами. */
+function jpegSize(buf) {
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+  let i = 2;
+  while (i < buf.length - 9) {
+    if (buf[i] !== 0xff) {
+      i++;
+      continue;
+    }
+    const marker = buf[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker))
+      return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+    i += 2 + buf.readUInt16BE(i + 2);
+  }
+  return null;
+}
+
 if (!fs.existsSync(POSTS_DIR)) {
   console.log("Папки content/posts нет — пропускаю проверку.");
   process.exit(0);
@@ -126,8 +146,23 @@ for (const file of files) {
     const coverFile = path.join(process.cwd(), "public", data.cover.replace(/^\//, ""));
     if (!fs.existsSync(coverFile))
       problems.push(`${where}: cover указывает на ${data.cover}, но файла нет`);
-    else if (!data.coverAlt)
-      warnings.push(`${where}: у обложки нет coverAlt — добавьте описание картинки`);
+    else {
+      if (!data.coverAlt)
+        warnings.push(`${where}: у обложки нет coverAlt — добавьте описание картинки`);
+
+      // Пропорции: провайдеры отдают свои фиксированные размеры, и если
+      // картинку не привести к формату, браузер обрежет её по object-cover
+      // и с композиции уедет центр
+      const size = jpegSize(fs.readFileSync(coverFile));
+      if (size) {
+        const ratio = size.w / size.h;
+        if (Math.abs(ratio - COVER_RATIO) > 0.02)
+          problems.push(
+            `${where}: обложка ${size.w}×${size.h} — это ${ratio.toFixed(2)}:1, а нужно 16:9 (${COVER_RATIO.toFixed(2)}:1). ` +
+              `Перегенерируйте: npm run cover -- --slug ${slug} --prompt "…" --force`
+          );
+      }
+    }
   } else if (data.published) {
     warnings.push(
       `${where}: нет обложки. Сгенерировать: npm run cover -- --slug ${slug} --prompt "…"`
