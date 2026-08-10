@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TelegramContact } from "@/components/telegram-contact";
 
 export const metadata = {
   title: "О проекте",
@@ -56,24 +57,18 @@ export default function AboutPage() {
         <h2 className="mt-3 font-display text-[24px] font-bold tracking-[-0.03em]">
           Написать мне
         </h2>
-        <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
-          Есть вопрос по материалу, идея для разбора или предложение о
-          сотрудничестве — пишите.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <a
-            href="mailto:hi@toharo.space"
-            className="rounded-full bg-ink px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.12em] text-bg transition-colors hover:bg-accent hover:text-ink"
-          >
-            hi@toharo.space
-          </a>
-          <Link
-            href="/blog/"
-            className="rounded-full border border-ink/20 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors hover:border-ink"
-          >
-            К материалам
-          </Link>
+        <div className="mt-4">
+          <TelegramContact />
         </div>
+      </div>
+
+      <div className="mt-6">
+        <Link
+          href="/blog/"
+          className="inline-block rounded-full border border-ink/20 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors hover:border-ink"
+        >
+          К материалам
+        </Link>
       </div>
     </div>
   );

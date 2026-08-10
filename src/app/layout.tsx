@@ -58,6 +58,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${ptSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        {/* Связывает сайт с профилем автора: поисковики и AI-движки
+            воспринимают sameAs как подтверждение авторства */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: SITE.name,
+              url: SITE.url,
+              inLanguage: "ru-RU",
+              author: {
+                "@type": "Person",
+                name: SITE.author,
+                url: SITE.telegram.url,
+                sameAs: [SITE.telegram.url],
+              },
+            }),
+          }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

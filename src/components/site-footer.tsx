@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE, asset } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -55,11 +56,28 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/about/#contact" className="hover:underline">
-                  Контакты
-                </Link>
+                <a
+                  href={SITE.telegram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Телеграм {SITE.telegram.handle}
+                </a>
               </li>
             </ul>
+
+            {/* Со своего экрана QR не отсканируешь — на телефоне он не нужен */}
+            <div className="mt-5 hidden sm:block">
+              {/* eslint-disable-next-line @next/next/no-img-element -- статический экспорт */}
+              <img
+                src={asset(SITE.telegram.qr)}
+                alt={`QR-код со ссылкой на телеграм ${SITE.telegram.handle}`}
+                width={96}
+                height={96}
+                className="rounded-lg border border-line bg-bg-raised p-1.5"
+              />
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { MobileNav } from "./mobile-nav";
+import { TelegramButton } from "./telegram-contact";
 
 export const NAV = [
   { href: "/", label: "Главная" },
@@ -29,15 +30,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/about/#contact"
-            className="group flex items-center gap-2 rounded-full bg-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-bg transition-colors hover:bg-accent hover:text-ink"
-          >
-            Связаться
-            <span className="transition-transform group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
+          <TelegramButton label="Написать" />
           <MobileNav items={NAV} />
         </div>
       </div>

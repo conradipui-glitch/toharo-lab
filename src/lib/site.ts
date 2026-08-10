@@ -19,8 +19,15 @@ export const SITE = {
   author: "toharo",
   description:
     "Личная лаборатория про вайб-кодинг, AI-агентов и автоматизацию: практика, разборы и живые заметки без воды.",
-  email: "hi@toharo.space",
   locale: "ru_RU",
+
+  /** Основной и единственный способ связи. */
+  telegram: {
+    handle: "@toha_ro",
+    url: "https://t.me/toha_ro",
+    /** QR на этот же адрес. Генерируется командой npm run qr. */
+    qr: "/qr-telegram.svg",
+  },
 } as const;
 
 /**
