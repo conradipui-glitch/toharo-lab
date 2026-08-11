@@ -16,8 +16,9 @@ const COVERS_DIR = path.join(process.cwd(), "public", "covers");
 /** Минимальная длина тела поста. Сайт — не телеграм, короткие заметки сюда не идут. */
 const MIN_BODY_CHARS = { Заметка: 1200, Статья: 3000, Гайд: 3000 };
 
-/** Обложка поста — формат cover, 16:9. Соответствует IMAGE_FORMATS в src/lib/images.ts. */
-const COVER_RATIO = 16 / 9;
+/** Обложка поста — формат cover. Соответствует IMAGE_FORMATS.cover в src/lib/images.ts. */
+const COVER_W = 1600;
+const COVER_H = 900;
 
 /** Размеры JPEG из маркера SOF — без зависимостей, читаем сами. */
 function jpegSize(buf) {
@@ -154,13 +155,21 @@ for (const file of files) {
       // картинку не привести к формату, браузер обрежет её по object-cover
       // и с композиции уедет центр
       const size = jpegSize(fs.readFileSync(coverFile));
-      if (size) {
+      if (size && (size.w !== COVER_W || size.h !== COVER_H)) {
         const ratio = size.w / size.h;
-        if (Math.abs(ratio - COVER_RATIO) > 0.02)
-          problems.push(
-            `${where}: обложка ${size.w}×${size.h} — это ${ratio.toFixed(2)}:1, а нужно 16:9 (${COVER_RATIO.toFixed(2)}:1). ` +
+        const ratioOk = Math.abs(ratio - COVER_W / COVER_H) < 0.02;
+
+        // Разделяем два случая: неверная форма кадра — это перегенерация,
+        // верная форма но другой размер — достаточно привести к формату.
+        // Точный размер важен потому, что в OG-метатегах и в атрибутах <img>
+        // жёстко указано 1600×900: иначе соцсетям сообщается неверный размер.
+        problems.push(
+          ratioOk
+            ? `${where}: обложка ${size.w}×${size.h}, а нужно ровно ${COVER_W}×${COVER_H}. ` +
+              `Привести: npm run covers:fit -- --write`
+            : `${where}: обложка ${size.w}×${size.h} — это ${ratio.toFixed(2)}:1, а нужно 16:9. ` +
               `Перегенерируйте: npm run cover -- --slug ${slug} --prompt "…" --force`
-          );
+        );
       }
     }
   } else if (data.published) {
