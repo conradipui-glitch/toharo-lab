@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-posts.mjs && node scripts/build-redirects.mjs",
+    "prebuild": "node scripts/check-posts.mjs && node scripts/build-redirects.mjs && node scripts/generate-rss.mjs",
     "build": "next build",
     "check": "node scripts/check-posts.mjs && node scripts/check-secrets.mjs --all",
     "check:posts": "node scripts/check-posts.mjs",

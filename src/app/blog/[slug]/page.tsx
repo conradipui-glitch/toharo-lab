@@ -6,6 +6,8 @@ import { getPost, getAllPosts, getPublishedSlugs } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
 import { CoverImage } from "@/components/cover-image";
 import { mdxComponents } from "@/components/mdx-components";
+import { TableOfContents, extractHeadings } from "@/components/table-of-contents";
+import { PostEnd } from "@/components/post-end";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -46,15 +48,45 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">) {
   };
 }
 
+/**
+ * Связанные материалы: сначала той же рубрики, затем общие теги, затем
+ * просто свежие. До 3 штук, без текущего поста.
+ */
+function getRelated(slug: string) {
+  const all = getAllPosts().filter((p) => p.slug !== slug);
+  const current = getPost(slug);
+  const currentTags = new Set(current?.tags ?? []);
+
+  const sameCategory = all.filter((p) => p.category === current?.category);
+  const sameTags = all.filter(
+    (p) =>
+      p.category !== current?.category &&
+      (p.tags ?? []).some((t) => currentTags.has(t))
+  );
+  const rest = all.filter(
+    (p) => p.category !== current?.category && !sameTags.includes(p)
+  );
+
+  const picked: typeof all = [];
+  const seen = new Set<string>();
+  for (const p of [...sameCategory, ...sameTags, ...rest]) {
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    picked.push(p);
+    if (picked.length === 3) break;
+  }
+  return picked;
+}
+
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const post = getPost(slug);
 
   if (!post || !post.published) notFound();
 
-  const related = getAllPosts()
-    .filter((p) => p.slug !== post.slug && p.category === post.category)
-    .slice(0, 3);
+  const related = getRelated(slug);
+  const headings = extractHeadings(post.content);
+  const url = `${SITE.url}/blog/${post.slug}/`;
 
   const fmt = (d: string) =>
     new Date(d).toLocaleDateString("ru-RU", {
@@ -75,7 +107,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
     inLanguage: "ru-RU",
     author: { "@type": "Person", name: SITE.author },
     publisher: { "@type": "Organization", name: SITE.name },
-    mainEntityOfPage: `${SITE.url}/blog/${post.slug}/`,
+    mainEntityOfPage: url,
     ...(post.cover ? { image: `${SITE.url}${post.cover}` } : {}),
     ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),
   };
@@ -132,6 +164,13 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
       )}
 
       <div className="mx-auto max-w-3xl px-6 py-14">
+        {/* Оглавление — компактный бокс сверху, на длинных материалах */}
+        {headings.length >= 3 && (
+          <div className="mb-10">
+            <TableOfContents items={headings} />
+          </div>
+        )}
+
         <div className="prose-post">
           <MDXRemote
             source={post.content}
@@ -152,10 +191,12 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             ))}
           </div>
         )}
+
+        <PostEnd url={url} title={post.title} />
       </div>
 
       {related.length > 0 && (
-        <div className="mx-auto max-w-6xl px-6 pb-8">
+        <div className="mx-auto max-w-6xl px-6 pb-16">
           <div className="mb-6 border-b border-line pb-3">
             <h2 className="font-display text-[24px] font-bold tracking-[-0.03em]">
               Читать дальше

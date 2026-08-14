@@ -3,7 +3,7 @@ import { Inter, Inter_Tight, JetBrains_Mono, PT_Serif } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { SITE } from "@/lib/site";
+import { SITE, asset } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -58,6 +58,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${ptSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE.name} — RSS`}
+          href={asset("/feed.xml")}
+        />
         {/* Связывает сайт с профилем автора: поисковики и AI-движки
             воспринимают sameAs как подтверждение авторства */}
         <script

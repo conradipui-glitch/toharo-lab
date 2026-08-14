@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TOHARO LAB</title>
+    <link>https://conradipui-glitch.github.io/toharo-lab/</link>
+    <description>Личная лаборатория про вайб-кодинг, AI-агентов и автоматизацию.</description>
+    <language>ru</language>
+    <lastBuildDate>Fri, 14 Aug 2026 13:08:01 GMT</lastBuildDate>
+    <atom:link href="https://conradipui-glitch.github.io/toharo-lab/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Генерация обложек нейросетью: почему размер приходится чинить руками</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/oblozhki-neyrosetyu-razmer-i-kachestvo/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/oblozhki-neyrosetyu-razmer-i-kachestvo/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Прогнал три обложки через бесплатный Pollinations и платный GPT Image. Оба провайдера вернули не тот размер, который просили, — и по-разному. Разбираю, что с этим делать и где разница в качестве реальна.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/oblozhki-neyrosetyu-razmer-i-kachestvo.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>Gemini 3.7 Flash: наш бенчмарк — игра, программа, пост</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/gemini-3-7-flash-bench/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/gemini-3-7-flash-bench/</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Пять моделей на моих серверах получили три одинаковые задачи — написать игру, программу и пост. Gemini 3.7 Flash оказалась самой быстрой во всех трёх, а по качеству — в лидерах. Разбор по времени, длине и чек-листу.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/gemini-3-7-flash-bench.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>«Claude AI Ultimate»: как хайповый репозиторий дня превращается в ловушку</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/claude-ai-ultimate-scam/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/claude-ai-ultimate-scam/</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Сколько разработчиков прямо сейчас скачивают себе инфостилер или криптомайнер только потому, что репозиторий мелькнул в трендах дня или вылез по хайповому тегу. Разбираю на живом примере, как отличить накрученный репозиторий-пустышку от реального проекта — и что может стоять за кнопкой «скачать».</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/claude-ai-ultimate-scam.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>Три слоя надёжного AI-агента: почему логика не должна жить в модели</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/tri-sloya-nadezhnogo-agenta/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/tri-sloya-nadezhnogo-agenta/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Агент ошибается не потому, что модель слабая, а потому что ей поручили то, что она делать не должна. Разбираю разделение на слои: правила в Markdown, маршрутизацию в модели, вычисления в детерминированном коде.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/tri-sloya-nadezhnogo-agenta.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>Skills в Claude Code: как научить агента вашему рабочему процессу</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/skills-claude-code-svoi-navyk/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/skills-claude-code-svoi-navyk/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Skill — папка с инструкцией, которая подключается только когда нужна. Разбираю, чем это отличается от файла правил, как написать свой навык за полчаса и почему описание важнее содержимого.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/skills-claude-code-svoi-navyk.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>Шесть моделей, одна задача, ноль иллюзий</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/shest-modeley-odna-zadacha/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/shest-modeley-odna-zadacha/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Один промпт, одна задача, шесть моделей на моих серверах. Победил claude-opus-4-6-thinking, а главный вывод не про победителя: разница внутри одного вендора важнее, чем между вендорами, скорость не равна качеству, а платный API не равен лучшему результату.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/shest-modeley-odna-zadacha.jpg" type="image/jpeg" length="0" />
+    </item>
+    <item>
+      <title>AGENTS.md: один файл правил для всех кодинг-агентов</title>
+      <link>https://conradipui-glitch.github.io/toharo-lab/blog/agents-md-pravila-dlya-agentov/</link>
+      <guid isPermaLink="true">https://conradipui-glitch.github.io/toharo-lab/blog/agents-md-pravila-dlya-agentov/</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>AGENTS.md — открытый стандарт: один Markdown в корне проекта, который читают Claude Code, Codex, Cursor и Antigravity. Разбираю, что туда писать, что агент проигнорирует и почему короткий файл работает лучше подробного.</description>
+      <enclosure url="https://conradipui-glitch.github.io/toharo-lab/covers/agents-md-pravila-dlya-agentov.jpg" type="image/jpeg" length="0" />
+    </item>
+  </channel>
+</rss>

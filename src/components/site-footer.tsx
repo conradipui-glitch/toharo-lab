@@ -65,6 +65,16 @@ export function SiteFooter() {
                   Телеграм {SITE.telegram.handle}
                 </a>
               </li>
+              <li>
+                <a
+                  href={asset("/feed.xml")}
+                  rel="alternate"
+                  type="application/rss+xml"
+                  className="hover:underline"
+                >
+                  RSS-лента
+                </a>
+              </li>
             </ul>
 
             {/* Со своего экрана QR не отсканируешь — на телефоне он не нужен */}

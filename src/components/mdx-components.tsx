@@ -3,11 +3,34 @@ import Link from "next/link";
 import { asset } from "@/lib/site";
 import { PoolChart, ModelVersions } from "@/components/pool-interactive";
 import { BenchChart } from "@/components/bench-interactive";
+import { headingSlug } from "@/components/table-of-contents";
 
 /**
  * Компоненты, доступные внутри текста поста.
  * Обычный Markdown работает как есть; это добавка для того, что разметкой не выразить.
  */
+
+/** Заголовки получают id по транслиту текста — на них ссылается оглавление. */
+function headingId(children: unknown): string | undefined {
+  if (Array.isArray(children)) {
+    const text = children
+      .map((c) => (typeof c === "string" ? c : ""))
+      .join("");
+    return headingSlug(text);
+  }
+  if (typeof children === "string") return headingSlug(children);
+  return undefined;
+}
+
+function H2({ children }: { children?: React.ReactNode }) {
+  const id = headingId(children);
+  return <h2 id={id}>{children}</h2>;
+}
+
+function H3({ children }: { children?: React.ReactNode }) {
+  const id = headingId(children);
+  return <h3 id={id}>{children}</h3>;
+}
 
 /**
  * Партнёрская или просто внешняя ссылка по id из content/links.json.
@@ -99,6 +122,8 @@ function Post({ slug, children }: { slug: string; children?: React.ReactNode }) 
 }
 
 export const mdxComponents: MDXComponents = {
+  h2: H2,
+  h3: H3,
   Partner,
   Disclosure,
   Note,
