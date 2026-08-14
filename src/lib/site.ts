@@ -21,12 +21,18 @@ export const SITE = {
     "Личная лаборатория про вайб-кодинг, AI-агентов и автоматизацию: практика, разборы и живые заметки без воды.",
   locale: "ru_RU",
 
-  /** Основной и единственный способ связи. */
+  /** Основной способ связи — личный аккаунт. */
   telegram: {
     handle: "@toha_ro",
     url: "https://t.me/toha_ro",
     /** QR на этот же адрес. Генерируется командой npm run qr. */
     qr: "/qr-telegram.svg",
+  },
+
+  /** Канал, на который подписываются читатели (аудитория). */
+  channel: {
+    handle: "@stringikotaborisa",
+    url: "https://t.me/stringikotaborisa",
   },
 } as const;
 

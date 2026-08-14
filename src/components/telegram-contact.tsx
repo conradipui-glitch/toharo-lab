@@ -14,17 +14,22 @@ function TelegramIcon({ className = "" }: { className?: string }) {
   );
 }
 
-/** Кнопка «написать в телеграм». Работает и на телефоне, и на десктопе. */
+/**
+ * Кнопка в телеграм. По умолчанию ведёт на личный контакт; в шапке можно
+ * переопределить `href`, чтобы вести на канал с подпиской.
+ */
 export function TelegramButton({
   className = "",
   label,
+  href,
 }: {
   className?: string;
   label?: string;
+  href?: string;
 }) {
   return (
     <a
-      href={SITE.telegram.url}
+      href={href ?? SITE.telegram.url}
       target="_blank"
       rel="noopener noreferrer"
       className={`group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.12em] text-bg transition-colors hover:bg-accent hover:text-ink ${className}`}

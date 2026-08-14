@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { MobileNav } from "./mobile-nav";
 import { TelegramButton } from "./telegram-contact";
+import { SITE } from "@/lib/site";
 
 export const NAV = [
   { href: "/", label: "Главная" },
@@ -30,7 +31,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <TelegramButton label="Написать" />
+          <TelegramButton
+            label="Следить в ТГ"
+            href={SITE.channel.url}
+          />
           <MobileNav items={NAV} />
         </div>
       </div>
