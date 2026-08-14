@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import { asset } from "@/lib/site";
 import { PoolChart, ModelVersions } from "@/components/pool-interactive";
+import { BenchChart } from "@/components/bench-interactive";
 
 /**
  * Компоненты, доступные внутри текста поста.
@@ -105,4 +106,5 @@ export const mdxComponents: MDXComponents = {
   Post,
   PoolChart,
   ModelVersions,
+  BenchChart,
 };
