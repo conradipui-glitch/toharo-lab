@@ -94,8 +94,4 @@ npm run check && git add content/posts/ && git commit -m "post: заголово
 
 Статистика посещений — по логам nginx, без счётчиков и JS: [deploy/stats.md](deploy/stats.md).
 
-## Домен
 
-`toharo.space` — от $3–15/год на Namecheap или Porkbun. Зоны `.lab` не существует, купить её нельзя.
-
-Бэкап контента — это git. Папка `content/posts/` и есть весь сайт.
