@@ -13,7 +13,7 @@
 | `page-plan/` | Page Planner: решения по страницам — EXPAND / CREATE / MERGE / HOLD |
 | `content-backlog.csv` | Редакционный backlog: приоритет, действие, тема, запросы, целевой URL |
 
-Папки `snapshots/`, `topics/`, `page-plan/` и backlog появятся по мере работы этапов 2–3.
+Папки `snapshots/` и `page-plan/` заполняются с 2026-09-15 (первый прогон Wordstat, этап 2). `topics/` и `content-backlog.csv` — этап 3.
 
 ## Цикл
 
