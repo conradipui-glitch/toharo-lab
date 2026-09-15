@@ -1,0 +1,30 @@
+приоритет,полоса,действие,тема,целевой_url,сильнейший_запрос,частотность,формулировок,заметка
+1,now,CREATE,DeepSeek,/blog/deepseek/,дипсик,2406813,397,"Два среза спроса на один URL (инфо + коммерческий). Бриф: briefs/deepseek.md"
+2,now,EXPAND,Gemini 3.7 Flash: бенчмарк,/blog/gemini-3-7-flash-bench/,gemini,759173,205,"Расширить до точки входа по Gemini: версии, доступ в России, приложения, «не работает». Бриф: briefs/gemini-3-7-flash-bench.md"
+3,now,CREATE,Бесплатные модели,/blog/besplatnye-modeli/,нейросеть бесплатно,959873,106,"Фокус — бесплатный доступ к текстовым моделям (не генераторы фото/песен). Бриф: briefs/besplatnye-modeli.md"
+4,now,CREATE,Qwen и китайские модели,/blog/qwen-i-kitayskie-modeli/,qwen,345732,357,"Два среза; хвост «официальный сайт» закрыть разделом. Бриф: briefs/qwen-i-kitayskie-modeli.md"
+5,now,EXPAND,Фальшивый GPT-4o на моём VPS — инцидент с Ollama,/blog/falshivye-gpt-4o-na-vps/,ollama,32951,472,"Флагман: уникальный инцидент. Добавить чек-лист безопасности. Бриф: briefs/falshivye-gpt-4o-na-vps.md"
+6,next,CREATE,Что такое вайб-кодинг,/blog/chto-takoe-vayb-koding/,вайб кодинг,13426,174,Черновик есть в репозитории — дописать и опубликовать.
+7,next,EXPAND,Генерация обложек нейросетью: размер и качество,/blog/oblozhki-neyrosetyu-razmer-i-kachestvo/,нейросеть для генерации изображений,73687,183,Усилить пост под кластер генерации изображений.
+8,next,CREATE,OpenAI Codex,/blog/openai-codex/,codex,113914,185,Два среза спроса.
+9,next,CREATE,Claude Code,/blog/claude-code/,claude code,60518,183,Два среза; учесть пересечение со skills-постом.
+10,next,CREATE,GLM / Zhipu,/blog/glm-zhipu/,glm,83949,194,Два среза спроса.
+11,next,CREATE,API нейросетей и ключи,/blog/api-neyrosetey-i-klyuchi/,openrouter,33529,198,Два среза; сильнейший — openrouter.
+12,next,CREATE,GigaChat,/blog/gigachat/,gigachat,47230,189,Два среза спроса.
+13,next,CREATE,Автоматизация и боты,/blog/avtomatizaciya-i-boty/,n8n,27129,198,Два среза; сильнейший — n8n.
+14,next,CREATE,Как выбрать модель для кода,/blog/kak-vybrat-model-dlya-koda/,фото лучшая нейросеть бесплатно онлайн,6260,83,Хвост размыт — уточнить фокус при написании.
+15,next,EXPAND,AGENTS.md: файл правил для агентов,/blog/agents-md-pravila-dlya-agentov/,agents md,1365,12,Встроить черновик «Файл правил проекта» — закрыть каннибализацию.
+16,later,CREATE,Что такое AI-агент,/blog/chto-takoe-ai-agent/,ai агент,10110,342,Два среза спроса.
+17,later,CREATE,Как выбрать кодинг-агента,/blog/kak-vybrat-koding-agenta/,codex vs,1430,12,Планируемая страница под кластер выбора инструмента.
+18,later,CREATE,Cursor,/blog/cursor/,cursor ai,13298,171,Два среза спроса.
+19,later,CREATE,Контекст — главный ресурс,/blog/kontekst-glavnyy-resurs/,контекстное окно,2605,26,Черновик есть — дописать; связать с «Три слоя» и skills.
+20,later,EXPAND,Skills в Claude Code: свой навык,/blog/skills-claude-code-svoi-navyk/,скиллы claude code,375,3,Расширить под кластер skills.
+21,later,EXPAND,"Шесть моделей, одна задача",/blog/shest-modeley-odna-zadacha/,сравнение нейросетей,1993,11,Усилить под кластер сравнений.
+22,later,CREATE,MCP: что это и зачем,/blog/mcp-chto-eto-i-zachem/,mcp сервер что это,1209,90,
+23,later,CREATE,Промпты и спецификации,/blog/prompty-i-specifikacii/,промпт инжиниринг,3624,55,
+24,later,CREATE,Мультиагентные системы,/blog/multiagentnye-sistemy/,мультиагентные системы,2545,26,
+25,later,CREATE,Первый AI-агент за вечер,/blog/pervyy-ai-agent-za-vecher/,первый агент ии,350,1,Черновик есть — публикация открывает верх воронки.
+26,later,EXPAND,dsh-vision-router: глаза текстовому агенту,/blog/dsh-vision-router/,deepseek dsh,637,3,
+27,later,CREATE,Память агента,/blog/pamyat-agenta/,память агента,860,1,
+28,later,CREATE,Агент на VPS,/blog/agent-na-vps/,локальные нейросети на серверах,37,2,
+29,later,EXPAND,«Claude AI Ultimate» — скам-репозиторий,/blog/claude-ai-ultimate-scam/,мошенничество с нейросетью,38,1,
