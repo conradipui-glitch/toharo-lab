@@ -41,11 +41,11 @@
 | 08.09 | Статья | falshivye-gpt-4o-na-vps | 24 636 | ✓ |
 | 16.08 | Статья | oblozhki-neyrosetyu-razmer-i-kachestvo | 13 540 | ✓ |
 | 16.08 | Статья | dsh-vision-router | 13 467 | ✓ |
-| 14.08 | Статья | gemini-3-7-flash-bench | 5 293 | ✓ |
+| 14.08 | Статья | gemini-3-7-flash-bench | 13 436 | ✓ |
 | 14.08 | Заметка | claude-ai-ultimate-scam | 10 759 | ✓ |
 | 11.08 | Статья | tri-sloya-nadezhnogo-agenta | 12 758 | ✓ |
 | 11.08 | Гайд | skills-claude-code-svoi-navyk | 12 311 | ✓ |
-| 11.08 | Статья | shest-modeley-odna-zadacha | 9 322 | ✓ |
+| 11.08 | Статья | shest-modeley-odna-zadacha | 9 591 | ✓ |
 | 11.08 | Гайд | agents-md-pravila-dlya-agentov | 13 939 | ✓ |
 
 Детали:
@@ -74,10 +74,11 @@
 Теги: deepseek · агенты · vision · плагины · разбор.
 Ссылки: → deepseek. Входящих: 1 (deepseek).
 
-**gemini-3-7-flash-bench** — «Gemini 3.7 Flash: наш бенчмарк — игра, программа, пост» (Статья, 14.08)
-Пять моделей, три задачи; Gemini 3.7 Flash — самая быстрая во всех трёх. Вывод: разница между поколениями важнее, чем между вендорами.
-Теги: модели · бенчмарк · эксперимент · gemini.
-Ссылки: нет. Входящих: 0.
+**gemini-3-7-flash-bench** — «Gemini: версии, доступ в России и бенчмарк 3.7 Flash» (Статья, 14.08, updated 16.09)
+Точка входа по Gemini: актуальные версии (Flash 3.7, Pro 3.1 preview, Omni для видео), доступ из России (VPN с выделенным IP, посредники, AI Studio), приложения на телефоне, чек-лист «не работает». Бенчмарк сохранён разделом: пять моделей, три задачи, 3.7 Flash быстрее всех.
+Подтемы: версии · РФ-доступ · телефон · «не работает» · бенчмарк.
+Теги: модели · бенчмарк · эксперимент · gemini · google gemini · нейросети.
+Ссылки: → shest-modeley-odna-zadacha. Входящих: 1 (shest-modeley-odna-zadacha).
 
 **claude-ai-ultimate-scam** — «„Claude AI Ultimate“: как хайповый репозиторий дня превращается в ловушку» (Заметка, 14.08)
 Живой разбор накрученного репозитория: звёзды, пустышка из двух файлов, воронка на download-портал; чек-лист проверки за 30 секунд.
@@ -98,7 +99,7 @@ Skill — папка с SKILL.md, подключается по описанию
 **shest-modeley-odna-zadacha** — «Шесть моделей, одна задача, ноль иллюзий» (Статья, 11.08, updated 16.09)
 Один промпт через шесть моделей: победил claude-opus-4-6-thinking; главное — не победитель, а выводы (разброс внутри вендора, скорость ≠ качество).
 Теги: ai-агенты · модели · эксперимент · инструменты.
-Ссылки: → deepseek. Входящих: 1 (deepseek).
+Ссылки: → deepseek, gemini-3-7-flash-bench. Входящих: 1 (deepseek).
 
 **agents-md-pravila-dlya-agentov** — «AGENTS.md: один файл правил для всех кодинг-агентов» (Гайд, 11.08)
 Открытый стандарт файла правил: что писать, чего не писать, почему короткий файл лучше длинного; готовый шаблон.
@@ -118,7 +119,7 @@ Skill — папка с SKILL.md, подключается по описанию
 ## 6. Рубрики и теги
 
 - **Рубрики:** Гайды (2), Статьи (7), Заметки (1); у каждой — страница `/category/...` и фильтр на /blog/.
-- **Теги:** проставлены у всех опубликованных постов, 35 уникальных. «модели» — 3 раза; по 2 раза — 8 («claude code», «безопасность», «разбор», «deepseek», «агенты», «эксперимент», «ai-агенты», «инструменты»); остальные 26 — одиночные.
+- **Теги:** проставлены у всех опубликованных постов, 37 уникальных. «модели» — 3 раза; по 2 раза — 8 («claude code», «безопасность», «разбор», «deepseek», «агенты», «эксперимент», «ai-агенты», «инструменты»); остальные 28 — одиночные.
 - **Поведение:** теги не кликабельны — это подписи. Ни страниц тегов, ни фильтра. Решение — в аудите (M4).
 
 ## 7. Перелинковка
@@ -126,10 +127,10 @@ Skill — папка с SKILL.md, подключается по описанию
 Граф контекстных ссылок (`<Post>`):
 
 - Плотное ядро: **tri-sloya ↔ agents-md ↔ skills** (взаимные ссылки).
-- Периферия: falshivye → claude-ai, tri-sloya; oblozhki → agents-md, skills, tri-sloya; deepseek → shest-modeley, dsh-vision-router; dsh-vision-router → deepseek; shest-modeley → deepseek.
-- **Без исходящих (2):** claude-ai-ultimate-scam, gemini-3-7-flash-bench.
-- **Без входящих (3):** falshivye-gpt-4o-na-vps, oblozhki-..., gemini-....
-- Правило контент-плана («в каждой новой статье — минимум 2 ссылки на старые, и хотя бы одна старая обновляется ссылкой на новую»): для deepseek выполнено — 2 исходящие (shest-modeley, dsh-vision-router), старые dsh-vision-router и shest-modeley обновлены входящими. Остальной граф — в аудите (H2).
+- Периферия: falshivye → claude-ai, tri-sloya; oblozhki → agents-md, skills, tri-sloya; deepseek → shest-modeley, dsh-vision-router; dsh-vision-router → deepseek; shest-modeley → deepseek; gemini-3-7-flash-bench → shest-modeley.
+- **Без исходящих (1):** claude-ai-ultimate-scam.
+- **Без входящих (2):** falshivye-gpt-4o-na-vps, oblozhki-....
+- Правило контент-плана («в каждой новой статье — минимум 2 ссылки на старые, и хотя бы одна старая обновляется ссылкой на новую»): для deepseek выполнено — 2 исходящие (shest-modeley, dsh-vision-router), старые dsh-vision-router и shest-modeley обновлены входящими. Для gemini (EXPAND) — исходящая на shest-modeley, входящая из shest-modeley. Остальной граф — в аудите (H2).
 
 ## 8. Метаданные и индексация (сводка)
 
@@ -154,7 +155,7 @@ Skill — папка с SKILL.md, подключается по описанию
 | `/blog/falshivye-gpt-4o-na-vps/` | 61 | 294 | ✓ | свой |
 | `/blog/oblozhki-neyrosetyu-razmer-i-kachestvo/` | 81 | 203 | ✓ | свой |
 | `/blog/dsh-vision-router/` | 74 | 290 | ✓ | свой |
-| `/blog/gemini-3-7-flash-bench/` | 67 | 215 | ✓ | свой |
+| `/blog/gemini-3-7-flash-bench/` | 65 | 215 | ✓ | свой |
 | `/blog/claude-ai-ultimate-scam/` | 86 | 297 | ✓ | свой |
 | `/blog/tri-sloya-nadezhnogo-agenta/` | 80 | 210 | ✓ | свой |
 | `/blog/skills-claude-code-svoi-navyk/` | 78 | 188 | ✓ | свой |
