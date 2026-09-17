@@ -1,6 +1,6 @@
 # Карта контента TOHARO LAB
 
-Срез: 2026-09-15, обновлено 2026-09-16. Живой документ — обновляется при изменениях на сайте. Находки и приоритеты — в `audits/2026-09-15.md`.
+Срез: 2026-09-15, обновлено 2026-09-17. Живой документ — обновляется при изменениях на сайте. Находки и приоритеты — в `audits/2026-09-15.md`.
 
 ## 1. Сайт
 
@@ -33,10 +33,11 @@
 4. **Инфраструктура** — VPS, API, генерация изображений, автоматизация.
 5. **Безопасность** — скам-репозитории, утечки, открытые порты, honeypot.
 
-## 4. Опубликованные посты (10)
+## 4. Опубликованные посты (11)
 
 | Дата | Рубрика | Slug | Файл, знаков | Обложка |
 | --- | --- | --- | ---: | --- |
+| 16.09 | Статья | besplatnye-modeli | 14 158 | ✓ |
 | 15.09 | Статья | deepseek | 19 157 | ✓ |
 | 08.09 | Статья | falshivye-gpt-4o-na-vps | 24 636 | ✓ |
 | 16.08 | Статья | oblozhki-neyrosetyu-razmer-i-kachestvo | 13 540 | ✓ |
@@ -50,17 +51,23 @@
 
 Детали:
 
+**besplatnye-modeli** — «Бесплатные нейросети: как получить доступ к сильным моделям» (Статья, 16.09)
+Бесплатный доступ как система из нескольких каналов: веб-чаты, API с лимитами, агрегаторы. Что реально работает на сентябрь 2026, где подвохи и как не нарваться на фейк.
+Подтемы: бесплатные чат-модели · мой сетап · границы бесплатного · подвохи и фейки · FAQ.
+Теги: бесплатные модели · нейросети · доступ.
+Ссылки: → deepseek, falshivye-gpt-4o-na-vps, shest-modeley-odna-zadacha. Входящих: 1 (deepseek).
+
 **deepseek** — «DeepSeek (дипсик): что это и как пользоваться на русском» (Статья, 15.09)
 Разбор для русскоязычного читателя: версии V4.1-Flash и V4-Pro, бесплатный чат без VPN, где проходит цензура, сравнение с GPT-5.6 / Claude Sonnet 5 / Gemini 3.7 Flash / GLM-5.3, API и оплата из России.
 Подтемы: версии · как пользоваться на русском · бесплатный тариф · цензура · сравнение моделей · API и агенты · мой опыт · FAQ.
 Теги: deepseek · дипсик · модели · гайд.
-Ссылки: → shest-modeley-odna-zadacha, dsh-vision-router. Входящих: 2 (dsh-vision-router, shest-modeley-odna-zadacha).
+Ссылки: → shest-modeley-odna-zadacha, dsh-vision-router. Входящих: 3 (besplatnye-modeli, dsh-vision-router, shest-modeley-odna-zadacha).
 
 **falshivye-gpt-4o-na-vps** — «Фальшивый GPT-4o на моём VPS: чем это обернулось» (Статья, 08.09)
 Инцидент: через открытый API Ollama на VPS появились поддельные «GPT-4o / GPT-4 / Claude 3 Opus» — внутри TinyLlama 1.1B и требование биткоинов. Аудит, закрытие порта, ошибки при разборе, honeypot AGENTARIUM.
 Подтемы: хронология · был ли взлом · удалённые улики · iptables и что после · VPN-конфиг в открытом доступе · AGENTARIUM.
 Теги: безопасность · ollama · инцидент · honeypot · агенты.
-Ссылки: → claude-ai-ultimate-scam · → tri-sloya-nadezhnogo-agenta. Входящих: 0.
+Ссылки: → claude-ai-ultimate-scam · → tri-sloya-nadezhnogo-agenta. Входящих: 1 (besplatnye-modeli).
 
 **oblozhki-neyrosetyu-razmer-i-kachestvo** — «Генерация обложек нейросетью: почему размер приходится чинить руками» (Статья, 16.08)
 Сравнение Pollinations и GPT Image на трёх обложках: ни один не вернул запрошенный размер; приведение к 1600×900 — шаг сборки.
@@ -99,7 +106,7 @@ Skill — папка с SKILL.md, подключается по описанию
 **shest-modeley-odna-zadacha** — «Шесть моделей, одна задача, ноль иллюзий» (Статья, 11.08, updated 16.09)
 Один промпт через шесть моделей: победил claude-opus-4-6-thinking; главное — не победитель, а выводы (разброс внутри вендора, скорость ≠ качество).
 Теги: ai-агенты · модели · эксперимент · инструменты.
-Ссылки: → deepseek, gemini-3-7-flash-bench. Входящих: 1 (deepseek).
+Ссылки: → deepseek, gemini-3-7-flash-bench. Входящих: 2 (besplatnye-modeli, deepseek).
 
 **agents-md-pravila-dlya-agentov** — «AGENTS.md: один файл правил для всех кодинг-агентов» (Гайд, 11.08)
 Открытый стандарт файла правил: что писать, чего не писать, почему короткий файл лучше длинного; готовый шаблон.
@@ -118,8 +125,8 @@ Skill — папка с SKILL.md, подключается по описанию
 
 ## 6. Рубрики и теги
 
-- **Рубрики:** Гайды (2), Статьи (7), Заметки (1); у каждой — страница `/category/...` и фильтр на /blog/.
-- **Теги:** проставлены у всех опубликованных постов, 37 уникальных. «модели» — 3 раза; по 2 раза — 8 («claude code», «безопасность», «разбор», «deepseek», «агенты», «эксперимент», «ai-агенты», «инструменты»); остальные 28 — одиночные.
+- **Рубрики:** Гайды (2), Статьи (8), Заметки (1); у каждой — страница `/category/...` и фильтр на /blog/.
+- **Теги:** проставлены у всех опубликованных постов, 39 уникальных. «модели» — 3 раза; по 2 раза — 9 («ai-агенты», «claude code», «агенты», «безопасность», «deepseek», «инструменты», «нейросети», «разбор», «эксперимент»); остальные 29 — одиночные.
 - **Поведение:** теги не кликабельны — это подписи. Ни страниц тегов, ни фильтра. Решение — в аудите (M4).
 
 ## 7. Перелинковка
@@ -127,21 +134,21 @@ Skill — папка с SKILL.md, подключается по описанию
 Граф контекстных ссылок (`<Post>`):
 
 - Плотное ядро: **tri-sloya ↔ agents-md ↔ skills** (взаимные ссылки).
-- Периферия: falshivye → claude-ai, tri-sloya; oblozhki → agents-md, skills, tri-sloya; deepseek → shest-modeley, dsh-vision-router; dsh-vision-router → deepseek; shest-modeley → deepseek; gemini-3-7-flash-bench → shest-modeley.
+- Периферия: falshivye → claude-ai, tri-sloya; oblozhki → agents-md, skills, tri-sloya; deepseek → shest-modeley, dsh-vision-router; dsh-vision-router → deepseek; shest-modeley → deepseek; gemini-3-7-flash-bench → shest-modeley; besplatnye-modeli → deepseek, falshivye, shest-modeley.
 - **Без исходящих (1):** claude-ai-ultimate-scam.
-- **Без входящих (2):** falshivye-gpt-4o-na-vps, oblozhki-....
-- Правило контент-плана («в каждой новой статье — минимум 2 ссылки на старые, и хотя бы одна старая обновляется ссылкой на новую»): для deepseek выполнено — 2 исходящие (shest-modeley, dsh-vision-router), старые dsh-vision-router и shest-modeley обновлены входящими. Для gemini (EXPAND) — исходящая на shest-modeley, входящая из shest-modeley. Остальной граф — в аудите (H2).
+- **Без входящих (1):** oblozhki-neyrosetyu-razmer-i-kachestvo.
+- Правило контент-плана («в каждой новой статье — минимум 2 ссылки на старые, и хотя бы одна старая обновляется ссылкой на новую»): для deepseek выполнено — 2 исходящие (shest-modeley, dsh-vision-router), старые dsh-vision-router и shest-modeley обновлены входящими. Для gemini (EXPAND) — исходящая на shest-modeley, входящая из shest-modeley. Для besplatnye-modeli — 3 исходящие (deepseek, falshivye-gpt-4o-na-vps, shest-modeley-odna-zadacha), входящая из deepseek добавлена. Остальной граф — в аудите (H2).
 
 ## 8. Метаданные и индексация (сводка)
 
-- **Sitemap:** 16 адресов (главная, /blog/, /about/, 3 рубрики, 10 постов), lastmod проставлен; черновики не попадают.
+- **Sitemap:** 17 адресов (главная, /blog/, /about/, 3 рубрики, 11 постов), lastmod проставлен; черновики не попадают.
 - **robots.txt:** открыт для всех, закрыт только `/go/`; sitemap указан.
 - **Schema.org:** WebSite (с автором) на всех страницах + Article у постов.
 - **OG:** title/description/url везде; og:image — только у постов (обложки 1600×900).
 - **Canonical:** у постов и главной — свой адрес; у /blog/, /about/ и рубрик — ошибочно главная (аудит, H1).
 - **RSS:** feed.xml, 10 записей, описание = excerpt, обложка в enclosure.
 
-### Приложение. Все URL на 16.09
+### Приложение. Все URL на 17.09
 
 | URL | Title (зн.) | Description (зн.) | H1 | Canonical |
 | --- | ---: | ---: | :-: | --- |
@@ -151,6 +158,7 @@ Skill — папка с SKILL.md, подключается по описанию
 | `/category/statyi/` | 19 | 35 | ✓ | ⚠ главная |
 | `/category/gaidy/` | 18 | 34 | ✓ | ⚠ главная |
 | `/category/zametki/` | 20 | 36 | ✓ | ⚠ главная |
+| `/blog/besplatnye-modeli/` | 72 | 233 | ✓ | свой |
 | `/blog/deepseek/` | 69 | 251 | ✓ | свой |
 | `/blog/falshivye-gpt-4o-na-vps/` | 61 | 294 | ✓ | свой |
 | `/blog/oblozhki-neyrosetyu-razmer-i-kachestvo/` | 81 | 203 | ✓ | свой |

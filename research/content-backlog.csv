@@ -1,7 +1,7 @@
 приоритет,полоса,действие,тема,целевой_url,сильнейший_запрос,частотность,формулировок,заметка
 1,done,CREATE,DeepSeek,/blog/deepseek/,дипсик,2406813,397,"Два среза спроса на один URL (инфо + коммерческий). Бриф: briefs/deepseek.md. Опубликовано 2026-09-16."
 2,done,EXPAND,Gemini 3.7 Flash: бенчмарк,/blog/gemini-3-7-flash-bench/,gemini,759173,205,"Расширить до точки входа по Gemini: версии, доступ в России, приложения, «не работает». Бриф: briefs/gemini-3-7-flash-bench.md. Расширено и опубликовано 2026-09-16 (2,7 → 7,8 тыс. знаков)"
-3,now,CREATE,Бесплатные модели,/blog/besplatnye-modeli/,нейросеть бесплатно,959873,106,"Фокус — бесплатный доступ к текстовым моделям (не генераторы фото/песен). Бриф: briefs/besplatnye-modeli.md"
+3,done,CREATE,Бесплатные модели,/blog/besplatnye-modeli/,нейросеть бесплатно,959873,106,"Опубликовано 2026-09-16 (9c69878). Партнёр xKiro заведён в links.json. Бриф: briefs/besplatnye-modeli.md"
 4,now,CREATE,Qwen и китайские модели,/blog/qwen-i-kitayskie-modeli/,qwen,345732,357,"Два среза; хвост «официальный сайт» закрыть разделом. Бриф: briefs/qwen-i-kitayskie-modeli.md"
 5,now,EXPAND,Фальшивый GPT-4o на моём VPS — инцидент с Ollama,/blog/falshivye-gpt-4o-na-vps/,ollama,32951,472,"Флагман: уникальный инцидент. Добавить чек-лист безопасности. Бриф: briefs/falshivye-gpt-4o-na-vps.md"
 6,next,CREATE,Что такое вайб-кодинг,/blog/chto-takoe-vayb-koding/,вайб кодинг,13426,174,Черновик есть в репозитории — дописать и опубликовать.
