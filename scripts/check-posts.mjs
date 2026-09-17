@@ -141,6 +141,12 @@ for (const file of files) {
       `${where}: партнёрская ссылка вставлена напрямую. Заведите её в content/links.json и ставьте через <Partner id="…">`
     );
 
+  // Внутренние ссылки — только через <Post>: сырой /blog/... резолвится мимо basePath
+  if (/\]\(\/blog\//.test(content))
+    problems.push(
+      `${where}: внутренняя ссылка сырым /blog/... — ставьте через <Post slug="…">`
+    );
+
   // --- обложка ---
 
   if (data.cover) {
