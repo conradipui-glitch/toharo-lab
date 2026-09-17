@@ -9,11 +9,11 @@
     "(true подставит rel=sponsored и обяжет поставить <Disclosure /> в посте); note — заметка для себя."
   ],
   "links": {
-    "example-service": {
-      "url": "https://example.com/?ref=toharo",
-      "label": "Example Service",
+    "xkiro": {
+      "url": "https://xkiro.com/ref/HX6H26H",
+      "label": "xKiro",
       "sponsored": true,
-      "note": "Пример записи. Удалите, когда появится первый настоящий партнёр."
+      "note": "Реферальная ссылка владельца (Антон). AI-гейтвей: 40+ бесплатных моделей, 500К токенов/день; Telegram-верификация — 1М/день + 30М бонус."
     }
   }
 }
